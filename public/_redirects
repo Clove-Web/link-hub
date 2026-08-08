@@ -1,0 +1,6 @@
+# Cloudflare Pages redirects
+# Invite links look like doughmination.info/st/<code>. Forward them to the
+# signup form with the code prefilled. Replaces the old server-side
+# /st/[code] route, which can't be statically exported.
+# The code is sanitised on submit in signup, so passing it raw is fine.
+/st/*  /signup?code=:splat  302
