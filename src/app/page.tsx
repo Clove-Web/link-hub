@@ -38,11 +38,6 @@ const sites = [
     href: "https://doughmination.site",
   },
   {
-    title: "ImLesbian.fyi",
-    desc: "A queer redirect subdomain service.",
-    href: "https://imlesbian.fyi",
-  },
-  {
     title: "Doughmination Music",
     desc: "My music app and collection",
     href: "https://doughmination.me",
@@ -61,20 +56,10 @@ const sites = [
     title: "Doughmination API",
     desc: "Public API have made",
     href: "https://doughmination.uk",
-  },
-  {
-    title: "Doughmination Status",
-    desc: "Real-time system status and uptime monitoring",
-    href: "https://doughmination.org",
-  },
-  {
-    title: "Dozzle",
-    desc: "Docker log viewer",
-    href: "https://doughmination.systems",
-  },
+  }
 ];
 
-const brandName = "doughmination.info";
+const brandName = "clove.is-a.dev";
 
 export default function Page() {
   return (
