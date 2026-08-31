@@ -12,8 +12,6 @@ import {
   avatarWrap,
   avatarDisc,
   avatar,
-  name,
-  letter,
   actions,
   btnPrimary,
   btnSecondary,
@@ -21,6 +19,7 @@ import {
 } from "@styles/home.css";
 import SiteGrid from "@app/SiteGrid";
 import Tagline from "@app/Tagline";
+import BrandName from "@app/BrandName";
 
 // PocketID login; the signup page is on this site at /signup.
 const pocketIdUrl = "https://doughmination.xyz";
@@ -59,8 +58,6 @@ const sites = [
   }
 ];
 
-const brandName = "clove.is-a.dev";
-
 export default function Page() {
   return (
     <main className={page}>
@@ -83,18 +80,7 @@ export default function Page() {
             />
           </div>
 
-          <h1 className={name} aria-label={brandName}>
-            {[...brandName].map((character, index) => (
-              <span
-                key={index}
-                className={letter}
-                aria-hidden
-                style={{ animationDelay: `${(index * 0.06).toFixed(2)}s` }}
-              >
-                {character === " " ? " " : character}
-              </span>
-            ))}
-          </h1>
+          <BrandName />
         </div>
 
         <Tagline />

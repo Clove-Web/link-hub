@@ -46,6 +46,11 @@ const dropIn = keyframes({
   to: { opacity: 1, transform: "translateY(0)" },
 });
 
+const swapIn = keyframes({
+  from: { opacity: 0, filter: "blur(6px)", transform: "translateY(6px)" },
+  to: { opacity: 1, filter: "blur(0)", transform: "translateY(0)" },
+});
+
 export const page = style({
   minHeight: "100dvh",
   display: "flex",
@@ -188,6 +193,14 @@ export const name = style({
   animation: `${slide} 6s linear infinite`,
   filter:
     "drop-shadow(0 0 14px rgba(91, 206, 250, 0.28)) drop-shadow(0 0 14px rgba(245, 169, 184, 0.28))",
+  "@media": {
+    "(prefers-reduced-motion: reduce)": { animation: "none" },
+  },
+});
+
+export const nameInner = style({
+  display: "inline-block",
+  animation: `${swapIn} 0.5s ease both`,
   "@media": {
     "(prefers-reduced-motion: reduce)": { animation: "none" },
   },
