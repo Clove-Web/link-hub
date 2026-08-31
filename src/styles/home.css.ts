@@ -46,11 +46,6 @@ const dropIn = keyframes({
   to: { opacity: 1, transform: "translateY(0)" },
 });
 
-const swapIn = keyframes({
-  from: { opacity: 0, filter: "blur(6px)", transform: "translateY(6px)" },
-  to: { opacity: 1, filter: "blur(0)", transform: "translateY(0)" },
-});
-
 export const page = style({
   minHeight: "100dvh",
   display: "flex",
@@ -163,13 +158,13 @@ export const header = style({
 });
 
 // Avatar and wordmark bound as one unit so the tagline below cannot move them.
+// Avatar sits above the wordmark, which types/retypes on its own.
 export const brand = style({
   display: "flex",
-  flexDirection: "row",
-  alignItems: "flex-end",
+  flexDirection: "column",
+  alignItems: "center",
   justifyContent: "center",
-  flexWrap: "wrap",
-  gap: vars.space.sm,
+  gap: vars.space.xs,
   animation: `${centerIn} 0.7s cubic-bezier(.2,.8,.2,1) both`,
   "@media": {
     "(prefers-reduced-motion: reduce)": { animation: "none" },
@@ -181,9 +176,8 @@ export const name = style({
   fontWeight: 700,
   letterSpacing: "-0.02em",
   whiteSpace: "pre",
-  // Tuck under the avatar's leaning side.
-  marginLeft: "-1rem",
-  marginBottom: "-0.25rem",
+  display: "flex",
+  alignItems: "baseline",
   backgroundImage:
     "linear-gradient(90deg, #5BCEFA, #F5A9B8, #ffffff, #F5A9B8, #5BCEFA, #5BCEFA)",
   backgroundSize: "200% 100%",
@@ -198,12 +192,24 @@ export const name = style({
   },
 });
 
+// The label part that types and untypes. A hidden copy of the longest label
+// holds the width so the static ".is-a.dev" never shifts.
 export const nameInner = style({
-  display: "inline-block",
-  animation: `${swapIn} 0.5s ease both`,
-  "@media": {
-    "(prefers-reduced-motion: reduce)": { animation: "none" },
-  },
+  display: "inline-grid",
+  whiteSpace: "pre",
+});
+
+export const nameGhost = style({
+  gridArea: "1 / 1",
+  visibility: "hidden",
+  // Room for the blinking cursor at the end of the label.
+  paddingRight: "0.5em",
+});
+
+export const nameTyped = style({
+  gridArea: "1 / 1",
+  justifySelf: "end",
+  whiteSpace: "pre",
 });
 
 export const letter = style({
