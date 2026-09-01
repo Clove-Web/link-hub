@@ -60,9 +60,9 @@ const lines = [
   "There is absolutely a reason for all these services.",
 ];
 
-const typeMs = 45;
-const deleteMs = 22;
-const holdMs = 2200;
+const typeMs = 80;
+const deleteMs = 40;
+const holdMs = 4000;
 
 export default function Tagline() {
   // Start on the full first line so SSR shows the real tagline with no flash.

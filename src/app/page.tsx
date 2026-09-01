@@ -34,7 +34,7 @@ const sites = [
   {
     title: "Doughmination Blog",
     desc: "My personal blog",
-    href: "https://doughmination.site",
+    href: "https://blog.doughmination.gay",
   },
   {
     title: "Doughmination Music",
@@ -44,7 +44,7 @@ const sites = [
   {
     title: "Doughmination Mail",
     desc: "My private email service",
-    href: "https://doughmination.tech",
+    href: "https://mail.doughmination.gay",
   },
   {
     title: "Doughmination System",

@@ -9,31 +9,24 @@
 
 import { useEffect, useState } from "react";
 
-import {
-  name,
-  nameInner,
-  nameGhost,
-  nameTyped,
-  letter,
-  cursor,
-} from "@styles/home.css";
+import { name, nameTyped } from "@styles/home.css";
 
 // Edit me: the wordmark types through these. Add every subdomain you want shown.
 const subdomains = [
   "clove",
+  "colonthree",
   "doughmination",
   "genderfluid",
   "linux",
   "meow",
   "mrrp",
+  "trans",
   "transbian",
+  "transgender",
 ];
 
-// Only the label is typed; this part stays put.
+// Only the label is typed; the suffix rides along with it.
 const suffix = ".is-a.dev";
-
-// Widest label, rendered invisibly so the suffix never moves while typing.
-const longest = subdomains.reduce((a, b) => (b.length > a.length ? b : a), "");
 
 const typeMs = 55;
 const deleteMs = 35;
@@ -103,22 +96,8 @@ export default function BrandName() {
 
   return (
     <h1 className={name} aria-label={label}>
-      <span className={nameInner}>
-        <span className={nameGhost} aria-hidden>
-          {longest}
-        </span>
-        <span className={nameTyped} aria-hidden>
-          {[...sub].map((character, position) => (
-            <span
-              key={position}
-              className={letter}
-              style={{ animationDelay: `${(position * 0.06).toFixed(2)}s` }}
-            >
-              {character}
-            </span>
-          ))}
-          <span className={cursor}>▌</span>
-        </span>
+      <span className={nameTyped} aria-hidden>
+        {sub}
       </span>
       <span aria-hidden>{suffix}</span>
     </h1>

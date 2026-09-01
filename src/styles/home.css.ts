@@ -11,11 +11,6 @@ import { vars } from "./theme.css";
 
 const slide = keyframes({ to: { backgroundPositionX: "200%" } });
 
-const wave = keyframes({
-  "0%, 100%": { transform: "translateY(0)" },
-  "50%": { transform: "translateY(-0.16em)" },
-});
-
 const riseIn = keyframes({
   from: { opacity: 0, transform: "translateY(16px)" },
   to: { opacity: 1, transform: "translateY(0)" },
@@ -192,37 +187,15 @@ export const name = style({
   },
 });
 
-// The label part that types and untypes. A hidden copy of the longest label
-// holds the width so the static ".is-a.dev" never shifts.
-export const nameInner = style({
-  display: "inline-grid",
-  whiteSpace: "pre",
-});
-
-export const nameGhost = style({
-  gridArea: "1 / 1",
-  visibility: "hidden",
-  // Room for the blinking cursor at the end of the label.
-  paddingRight: "0.5em",
-});
-
+// The label part that types and untypes. It shrink-wraps the typed text so the
+// label and ".is-a.dev" travel together and the pair stays centred.
+// The padding is the caret's lane: the cursor is taken out of flow and parked
+// there, so ".is-a.dev" never shifts as the caret blinks on and off.
+// The typed label. Keep it plain text with no transformed or positioned
+// descendants: either would drop the glyphs out of the h1's
+// background-clip: text and render them invisible.
 export const nameTyped = style({
-  gridArea: "1 / 1",
-  justifySelf: "end",
   whiteSpace: "pre",
-});
-
-export const letter = style({
-  display: "inline-block",
-  animationName: wave,
-  animationDuration: "2.2s",
-  animationTimingFunction: "ease-in-out",
-  animationIterationCount: "infinite",
-  "@media": {
-    "(prefers-reduced-motion: reduce)": {
-      animationName: "none",
-    },
-  },
 });
 
 export const tagline = style({
@@ -235,6 +208,7 @@ export const tagline = style({
   textAlign: "center",
 });
 
+// Tagline only; the wordmark types without a caret.
 export const cursor = style({
   display: "inline-block",
   marginLeft: "1px",
@@ -246,14 +220,21 @@ export const cursor = style({
   },
 });
 
+// 58rem holds exactly three 15rem columns plus gaps (47rem) without leaving
+// room for a fourth (63rem), so desktop lands on 3 across and auto-fit still
+// steps down to 2 and then 1 as the viewport narrows.
 export const grid = style({
   width: "100%",
-  maxWidth: "40rem",
+  maxWidth: "58rem",
   display: "grid",
   gridTemplateColumns: "repeat(auto-fit, minmax(15rem, 1fr))",
   gap: vars.space.md,
 });
 
+// Deliberately motionless. The cards used to animate in, tilt on hover, and
+// fly apart on click; the click animation wrote inline opacity/transform and
+// then navigated, so a bfcache back-navigation restored the page with every
+// card still exploded. Hover is a plain colour change now.
 export const card = style({
   display: "flex",
   flexDirection: "column",
@@ -262,41 +243,12 @@ export const card = style({
   background: vars.color.surface,
   border: `1px solid ${vars.color.border}`,
   borderRadius: vars.radius.lg,
-  position: "relative",
-  overflow: "hidden",
-  willChange: "transform",
-  transformOrigin: "center bottom",
-  transition:
-    "background 0.2s ease, border-color 0.2s ease, transform 0.25s cubic-bezier(.34,1.4,.5,1), box-shadow 0.2s ease",
-  // backwards fill so hover-tilt and click-explosion transforms take over after.
-  animation: `${riseIn} 0.5s ease backwards`,
-  "::after": {
-    content: "",
-    position: "absolute",
-    top: 0,
-    left: "-120%",
-    width: "80%",
-    height: "100%",
-    background:
-      "linear-gradient(100deg, transparent, rgba(245,169,184,0.12), rgba(91,206,250,0.12), transparent)",
-    transform: "skewX(-18deg)",
-    transition: "left 0.6s ease",
-    pointerEvents: "none",
-  },
+  transition: "background 0.2s ease, border-color 0.2s ease",
   selectors: {
     "&:hover": {
       background: vars.color.surfaceHover,
       borderColor: vars.color.accent,
-      transform: "translateY(-6px) rotate(var(--tilt, 0deg)) scale(1.03)",
-      boxShadow: "0 14px 34px -12px rgba(91,206,250,0.4)",
-      zIndex: 3,
     },
-    "&:hover::after": {
-      left: "140%",
-    },
-  },
-  "@media": {
-    "(prefers-reduced-motion: reduce)": { animation: "none" },
   },
 });
 
@@ -310,12 +262,6 @@ export const cardTitle = style({
 
 export const cardArrow = style({
   color: vars.color.accent,
-  transition: "transform 0.15s ease",
-  selectors: {
-    [`${card}:hover &`]: {
-      transform: "translateX(3px)",
-    },
-  },
 });
 
 export const cardDesc = style({
