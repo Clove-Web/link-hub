@@ -13,16 +13,22 @@ import { name, nameTyped } from "@styles/home.css";
 
 // Edit me: the wordmark types through these. Add every subdomain you want shown.
 const subdomains = [
+  "bun",
   "clove",
   "colonthree",
   "doughmination",
   "genderfluid",
+  "ghostwire",
   "linux",
+  "linkin",
   "meow",
   "mrrp",
+  "nextjs",
   "trans",
   "transbian",
   "transgender",
+  "ts",
+  "typescript",
 ];
 
 // Only the label is typed; the suffix rides along with it.
