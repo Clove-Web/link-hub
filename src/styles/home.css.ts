@@ -52,20 +52,14 @@ export const page = style({
 });
 
 const avatarBox = {
-  width: 176,
-  height: 196,
-  disc: 140,
-  radius: 70,
-  discCenterX: 78,
+  size: 140,
 };
 
 export const avatarWrap = style({
   position: "relative",
   zIndex: 2,
-  width: `${avatarBox.width}px`,
-  height: `${avatarBox.height}px`,
-  // Independent rotate so it composes with the float animation.
-  rotate: "6deg",
+  width: `${avatarBox.size}px`,
+  height: `${avatarBox.size}px`,
   animationName: float,
   animationDuration: "5s",
   animationTimingFunction: "ease-in-out",
@@ -77,10 +71,7 @@ export const avatarWrap = style({
 
 export const avatarDisc = style({
   position: "absolute",
-  left: `${avatarBox.discCenterX - avatarBox.radius}px`,
-  bottom: 0,
-  width: `${avatarBox.disc}px`,
-  height: `${avatarBox.disc}px`,
+  inset: 0,
   borderRadius: vars.radius.full,
   background: vars.color.surface,
   border: `2px solid ${vars.color.border}`,
@@ -103,38 +94,18 @@ export const avatarDisc = style({
   },
 });
 
-// Visible region = disc circle + full-width strip above the disc centre, so the
-// head pokes out the top while the lower body stays clipped to the ring.
-const maskDiscCenter = {
-  x: avatarBox.discCenterX + 7,
-  y: 120,
-};
-
-const maskLayers =
-  `radial-gradient(circle ${avatarBox.radius}px at ${maskDiscCenter.x}px ${maskDiscCenter.y}px, #000 ${avatarBox.radius - 1}px, transparent ${avatarBox.radius}px), ` +
-  `linear-gradient(#000, #000)`;
-
 export const avatar = style({
   position: "absolute",
-  left: "-7px",
-  bottom: 0,
-  width: "190px",
-  height: "190px",
+  inset: 0,
+  width: "100%",
+  height: "100%",
   zIndex: 1,
   objectFit: "cover",
-  transformOrigin: "center bottom",
+  borderRadius: vars.radius.full,
   transition: "transform 0.3s ease",
-  WebkitMaskImage: maskLayers,
-  maskImage: maskLayers,
-  WebkitMaskRepeat: "no-repeat, no-repeat",
-  maskRepeat: "no-repeat, no-repeat",
-  WebkitMaskSize: "100% 100%, 100% 120px",
-  maskSize: "100% 100%, 100% 120px",
-  WebkitMaskPosition: "0 0, 0 0",
-  maskPosition: "0 0, 0 0",
   selectors: {
     [`${avatarWrap}:hover &`]: {
-      transform: "scale(1.05) translateY(-2px)",
+      transform: "scale(1.05)",
     },
   },
 });

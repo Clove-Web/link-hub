@@ -17,6 +17,7 @@ const subdomains = [
   "clove",
   "colonthree",
   "doughmination",
+  "femboy",
   "genderfluid",
   "ghostwire",
   "linux",

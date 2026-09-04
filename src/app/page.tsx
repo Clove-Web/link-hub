@@ -75,8 +75,8 @@ export default function Page() {
               className={avatar}
               src="https://m.doughmination.gay/img/avatars/favicon.png"
               alt="Clove's avatar"
-              width={190}
-              height={190}
+              width={140}
+              height={140}
             />
           </div>
 
